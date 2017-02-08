@@ -10,8 +10,8 @@ doc = Nokogiri::HTML(open('http://www.emptybottle.com/full/'))
 show_html = doc.css('div.tw-plugin-full-event-list ul li div.show_full span.show_details')
 show_details = show_html.map do |link|
   {
-    date: link.css('span.show_date span.tw-event-date-complete span.tw-event-date').children.to_s.strip,
-    time: link.css('span.show_date span.tw-event-time-complete span.tw-event-time').children.to_s.strip,
+    date: link.css('span.show_date span.tw-event-date-complete span.tw-event-date').text.strip,
+    time: link.css('span.show_date span.tw-event-time-complete span.tw-event-time').text.strip,
     artists: link.css('span.show_artists ul li').children.map { |el| el.to_s.strip }
   }
 end
